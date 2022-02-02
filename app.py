@@ -15,8 +15,8 @@ features = tpot_data.drop('target', axis=1)
 training_features, testing_features, training_target, testing_target = \
             train_test_split(features, tpot_data['target'], random_state=None)
 
-# Average CV score on the training set was: 0.9742753623188406
-exported_pipeline = MLPClassifier(alpha=0.01, learning_rate_init=0.001)
+# Average CV score on the training set was: 0.9746376811594203
+exported_pipeline = MLPClassifier(alpha=0.1, learning_rate_init=0.1)
 
 exported_pipeline.fit(training_features, training_target)
 
@@ -39,18 +39,18 @@ def predict():
     data_df = pd.DataFrame.from_dict(data)
     
     #predictions
-     = 'encoder.pkl'
-    target_ = 'target_encoder.pkl'
-    if :
+    encoder_exist = ''
+    target_encoder_exist = 'target_'
+    if encoder_exist:
       try:
-        data_df = .transform(data_df)
+        data_df = encoder_exist.transform(data_df)
       except:
         print("No encoder exist")
     result = exported_pipeline.predict(data_df)
    
 
     #decode the output
-    if target_:
+    if target_encoder_exist:
       try:
         result = target_encoder.inverse_transform(result)
       except:
